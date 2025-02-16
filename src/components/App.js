@@ -1,22 +1,25 @@
-import { Component } from '../core/Component';
-import { Form } from './Form';
-import { List } from './List';
-import { ListItem } from './ListItem';
+import { Component } from '../core/Component'
+import { Form } from './Form'
+import { List } from './List'
+import { TotalAmount } from './TotalAmount'
 
 export class App extends Component {
-  setup(props) {
-    this.$rootElement = document.createElement('div');
-    this.$rootElement.className = 'app';
+	setup(props) {
+		console.log('я в сетапе App')
 
-    // ...
-    
-    const donateForm = new Form();
-    this.$rootElement.appendChild(donateForm.$rootElement);
-    const donateList = new List();
-    this.$rootElement.appendChild(donateList.$rootElement);
-  }
-  
-  onItemCreate(amount) {
-    // ...
-  }
+		this.$rootElement = document.createElement('div')
+		this.$rootElement.className = 'app'
+
+		const totalAmount = new TotalAmount()
+		this.$rootElement.appendChild(totalAmount.$rootElement)
+
+		const donateForm = new Form()
+		this.$rootElement.appendChild(donateForm.$rootElement)
+		const donateList = new List()
+		this.$rootElement.appendChild(donateList.$rootElement)
+	}
+
+	onItemCreate(amount) {
+		// ...
+	}
 }
