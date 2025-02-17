@@ -1,6 +1,7 @@
 import { Component } from '../core/Component'
 import { Form } from './Form'
 import { List } from './List'
+import { ListItem } from './ListItem'
 import { TotalAmount } from './TotalAmount'
 
 export class App extends Component {
@@ -10,16 +11,20 @@ export class App extends Component {
 		this.$rootElement = document.createElement('div')
 		this.$rootElement.className = 'app'
 
-		const totalAmount = new TotalAmount()
-		this.$rootElement.appendChild(totalAmount.$rootElement)
+		this.totalAmount = new TotalAmount()
+		this.$rootElement.appendChild(this.totalAmount.$rootElement)
 
-		const donateForm = new Form()
+		const donateForm = new Form({ onSubmit: this.onItemCreate.bind(this) })
 		this.$rootElement.appendChild(donateForm.$rootElement)
-		const donateList = new List()
-		this.$rootElement.appendChild(donateList.$rootElement)
+
+		this.donateList = new List()
+		this.$rootElement.appendChild(this.donateList.$rootElement)
 	}
 
 	onItemCreate(amount) {
-		// ...
+		console.log('onItemCreate amount:', amount)
+		const newListItem = new ListItem({ amount })
+		this.donateList.addItem(newListItem)
+		this.totalAmount.setNewAmount(amount)
 	}
 }

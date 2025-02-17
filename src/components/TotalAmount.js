@@ -7,8 +7,17 @@ export class TotalAmount extends Component {
 		this.$rootElement.textContent = `Итого: $`
 
 		const $totalAmountSpan = document.createElement('span')
-		$totalAmountSpan.textContent = this.props.totalAmount //TODO
+		this.totalAmount = 0
+		this.$totalAmountSpan = $totalAmountSpan
+		this.$totalAmountSpan.textContent = `${this.totalAmount}`
+
+		console.log(toString(this.totalAmount))
 
 		this.$rootElement.appendChild($totalAmountSpan)
+	}
+
+	setNewAmount(sumToAddUp) {
+		this.totalAmount += sumToAddUp
+		this.$totalAmountSpan.textContent = `${this.totalAmount}`
 	}
 }
