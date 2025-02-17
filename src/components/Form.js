@@ -47,6 +47,12 @@ export class Form extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault()
+		const currentDonationAmount = Number(this.$donateInput.value)
+		if (this.props.onSubmit && currentDonationAmount) {
+			this.props.onSubmit(currentDonationAmount)
+		}
+
 		this.$donateInput.value = ''
+		this.$button.disable()
 	}
 }
